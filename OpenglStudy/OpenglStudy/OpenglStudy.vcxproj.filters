@@ -24,6 +24,12 @@
     <ClCompile Include="Geass.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="move.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GeassMain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Geass.h">

@@ -2,8 +2,7 @@
 
 #include "Geass.h"
 
-#define SRC_WDITH       800
-#define SRC_HEIGHT      600
+
 
 void RenderScene()
 {
@@ -25,7 +24,12 @@ void RenderScene()
 	}
 	glEnd();//½áÊø»­µã
 
+	//glPushMatrix();
+	//glPopMatrix();
+
 	glutSwapBuffers();
+
+	glutPostRedisplay();
 }
 
 void SetupRC()
@@ -67,11 +71,11 @@ void ChangeSize(GLsizei w, GLsizei h)
 	glLoadIdentity();
 }
 
-int main(int argc, char* argv[])
+int main_draw(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(SRC_WDITH, SRC_HEIGHT);
+	glutInitWindowSize(SCR_WDITH, SCR_HEIGHT);
 	glutInitWindowPosition(10, 10);
 	glutCreateWindow("Hello Point");
 	glutDisplayFunc(RenderScene);
