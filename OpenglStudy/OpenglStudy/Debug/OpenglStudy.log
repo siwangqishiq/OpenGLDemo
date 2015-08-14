@@ -1,0 +1,10 @@
+﻿生成启动时间为 2015/8/14 9:47:13。
+     1>项目“F:\vm\OpenglStudy\OpenglStudy\OpenglStudy.vcxproj”在节点 2 上(Build 个目标)。
+     1>Link:
+         D:\软件安装目录\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\vm\OpenglStudy\Debug\OpenglStudy.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glut32.lib glut.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\vm\OpenglStudy\Debug\OpenglStudy.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\vm\OpenglStudy\Debug\OpenglStudy.lib" /MACHINE:X86 Debug\demo.obj
+         OpenglStudy.vcxproj -> F:\vm\OpenglStudy\Debug\OpenglStudy.exe
+     1>已完成生成项目“F:\vm\OpenglStudy\OpenglStudy\OpenglStudy.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.18
