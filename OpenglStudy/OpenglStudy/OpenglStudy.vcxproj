@@ -81,6 +81,10 @@
   <ItemGroup>
     <ClCompile Include="demo.c" />
     <ClCompile Include="Drawpoint.cpp" />
+    <ClCompile Include="Geass.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Geass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

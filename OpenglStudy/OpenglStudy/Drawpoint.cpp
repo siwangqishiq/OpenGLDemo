@@ -1,10 +1,19 @@
 #include "GL/glut.h"
 
+#include "Geass.h"
+
 #define SRC_WDITH       800
 #define SRC_HEIGHT      600
 
 void RenderScene()
 {
+	Point3D pts[3] = { { 1, 2, 3 }, { 4, 5, 6, }, {7,8,9} };
+
+	printPoint3D(&pts[0]);
+	printPoint3D(&pts[1]);
+	printPoint3D(&pts[2]);
+
+	printf("图形渲染\n");
 	//清空颜色缓冲区，填充的颜色由 glClearColor( 0, 0.0, 0.0, 1 ); 指定为黑色
 
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -22,14 +31,13 @@ void RenderScene()
 void SetupRC()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1);//以RGB(0,0,0)即黑色来清空颜色缓冲区
-
 	glColor3f(1.0f, 0.0f, 0.0f);//以RGB(1,0,0)即红色来绘制图形
-
 }
 
 
 void ChangeSize(GLsizei w, GLsizei h)
 {
+	printf("定义视口\n");
 	GLfloat nRange = 200.0f;
 
 	// Prevent a divide by zero

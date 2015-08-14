@@ -7,3 +7,6 @@ foo.txt
 !foo.html
 #  忽略所有.o 和 .a文件.
 *.[oa]
+*.[log]
+*.[obj]
+/Debug/*
