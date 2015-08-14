@@ -3,7 +3,7 @@
 
 
 #define SCREEN_WIDTH     800
-#define SCREEN_HEIGHT    800
+#define SCREEN_HEIGHT    600
 
 void myDisplay(void)
 {
@@ -13,7 +13,7 @@ void myDisplay(void)
 }
 
 
-int main(int argc, char *argv[])
+int main_demo(int argc, char *argv[])
 {
 	glutInit(&argc, argv);
 	printf("Hello OpenGL\n");

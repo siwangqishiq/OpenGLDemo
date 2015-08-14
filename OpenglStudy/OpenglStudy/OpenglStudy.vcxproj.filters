@@ -18,5 +18,8 @@
     <ClCompile Include="demo.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Drawpoint.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
