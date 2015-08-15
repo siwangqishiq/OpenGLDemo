@@ -2,10 +2,14 @@
 #define _GEASS_H_
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <gl\glut.h>
 
 #define SCR_WDITH       800      //屏幕宽度
 #define SCR_HEIGHT      600      //屏幕高度
+
+#define SUCCESS      0
+#define ERROR       -1
 
 struct _Point3D{
 	float x;
@@ -23,6 +27,11 @@ struct _Color{
 };
 typedef struct _Color Color;
 
+//4x4矩阵 
+typedef struct{
+	float data[4][4];
+} Matrix;
+
 //在控制台打印3D点坐标
 void printPoint3D(const Point3D * pPoint3D);
 
@@ -35,5 +44,11 @@ int drawPointInt(int x, int y, const Color color);
 int drawLine(float x1, float y1,float x2, float y2, const Color color);
 
 int drawLineInt(int x1, int y1, int x2, int y2, const Color color);
+
+//打印矩阵
+void printMatirx(const Matrix *pMatrix);
+
+//两矩阵相乘
+int multiMatrix(Matrix *ret, const Matrix *left, const Matrix *right);
 
 #endif

@@ -3,8 +3,65 @@
 #include "Geass.h"
 
 
+void test()
+{
+	Matrix m1 = { 0 };
+	m1.data[0][0] = 1;
+	m1.data[0][1] = 2;
+	m1.data[0][2] = 3;
+	m1.data[0][3] = 4;
+	
+	m1.data[1][0] = 1;
+	m1.data[1][1] = 2;
+	m1.data[1][2] = 3;
+	m1.data[1][3] = 4;
+
+	m1.data[2][0] = 1;
+	m1.data[2][1] = 2;
+	m1.data[2][2] = 3;
+	m1.data[2][3] = 4;
+	
+	m1.data[3][0] = 1;
+	m1.data[3][1] = 2;
+	m1.data[3][2] = 3;
+	m1.data[3][3] = 4;
+
+	Matrix m2 = { 0 };
+	m2.data[0][0] = 4;
+	m2.data[0][1] = 3;
+	m2.data[0][2] = 2;
+	m2.data[0][3] = 1;
+	
+	m2.data[1][0] = 4;
+	m2.data[1][1] = 3;
+	m2.data[1][2] = 2;
+	m2.data[1][3] = 1;
+	
+	m2.data[2][0] = 4;
+	m2.data[2][1] = 3;
+	m2.data[2][2] = 2;
+	m2.data[2][3] = 1;
+	
+	m2.data[3][0] = 4;
+	m2.data[3][1] = 3;
+	m2.data[3][2] = 2;
+	m2.data[3][3] = 1;
+
+	printMatirx(&m1);
+	printMatirx(&m2);
+
+	Matrix m3 = {0};
+	printMatirx(&m3);
+
+	multiMatrix(&m3, &m1, &m2);
+
+	printMatirx(&m3);
+}
+
 int init()
 {
+	test();
+
 	glClearColor(1,1,1,1);
 	//×ÊÔ´ÔØÈë
 
