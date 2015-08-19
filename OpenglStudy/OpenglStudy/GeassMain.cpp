@@ -58,9 +58,20 @@ void test()
 	printMatirx(&m3);
 }
 
+void test2()
+{
+	Point4D pts[3] = { { 1, 1, 1, 1 }, { 1, 2, 3, 1 }, { 1, 2, 4, 1 } };
+	
+	Point4D *p = pts;
+	p[2].x = 110;
+	printf("%f %f %f %f", p[2].x, p[2].y, p[2].z, p[2].w);
+
+}
+
 int init()
 {
-	test();
+	//test();
+	test2();
 
 	glClearColor(1,1,1,1);
 	//◊ ‘¥‘ÿ»Î
