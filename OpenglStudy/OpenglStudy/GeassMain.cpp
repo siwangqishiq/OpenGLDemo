@@ -1,7 +1,4 @@
-#include "GL/glut.h"
-
 #include "Geass.h"
-
 
 void test()
 {
@@ -92,6 +89,15 @@ void render()
 	glutSwapBuffers();
 }
 
+//¥¶¿Ì ‰»Î
+void handleKeyInput(unsigned char key, int x, int y)
+{
+	//printf("key is %d",key);
+	if (key == 27){
+		exit(0);
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
@@ -100,7 +106,9 @@ int main(int argc, char* argv[])
 	glutInitWindowPosition(100, 50);
 	glutCreateWindow("Hello World");
 	glutDisplayFunc(render);
+	glutKeyboardFunc(handleKeyInput);
 	init();
 	glutMainLoop();
-	return 1;
+
+	return 0;
 }
