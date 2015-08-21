@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #ifndef _GEASS_H_
 #define _GEASS_H_
 
@@ -79,6 +81,25 @@ typedef struct PolyFace4DType_v1 PolyFace1;
 //v1  物体
 #define OBJECT_MAX_VERTICES         1024//物体最多顶点个数
 #define OBJECT_MAX_POLYS             512//物体最多多边形个数
+
+//多边形面属性
+#define  POLY_ATTR_2SIDED        0x0001
+#define  POLY_ATTR_TRANSPANT     0x0002
+#define  POLY_ATTR_8BITCOLOR     0x0004
+#define  POLY_ATTR_RGB16         0x0008
+#define  POLY_ATTR_RGB24         0x0010
+//多边形着色模式
+#define  POLY_ATTR_SHADE_MODE_PURE      0x0020
+#define  POLY_ATTR_SHADE_MODE_FLAT      0x0040
+#define  POLY_ATTR_SHADE_MODE_GOURAUDE  0x0080
+#define  POLY_ATTR_SHADE_MODE_PHONG     0x0100
+
+//多边形状态值
+#define  POLY_STATE_ACTIVE     0x0001
+#define  POLY_STATE_CLIPPED    0x0002
+#define  POLY_STATE_BACKFACE   0x0004
+
+
 struct Object_4D_V1_Type
 {
 	int id;//物体唯一标示

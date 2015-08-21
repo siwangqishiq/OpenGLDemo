@@ -1,4 +1,5 @@
 #include "Geass.h"
+#include "LoadModel.h"
 
 void test()
 {
@@ -98,7 +99,7 @@ void handleKeyInput(unsigned char key, int x, int y)
 	}
 }
 
-int main(int argc, char* argv[])
+int main1(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);

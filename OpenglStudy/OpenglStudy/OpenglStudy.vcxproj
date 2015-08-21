@@ -79,16 +79,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="demo.c" />
+    <ClCompile Include="SimpleShow.c" />
     <ClCompile Include="DrawOpenGL.cpp" />
     <ClCompile Include="Drawpoint.cpp" />
     <ClCompile Include="Geass.cpp" />
     <ClCompile Include="GeassMain.cpp" />
+    <ClCompile Include="LoadModel.cpp" />
     <ClCompile Include="move.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawOpenGL.h" />
     <ClInclude Include="Geass.h" />
+    <ClInclude Include="LoadModel.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OpenglStudy.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\obj1_model.plg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
