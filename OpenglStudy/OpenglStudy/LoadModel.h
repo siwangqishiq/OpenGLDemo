@@ -2,10 +2,10 @@
 #define _LOADMODEL_H_
 
 //载入model模块
-#include <string.h>
 #include "Geass.h"
+#include <string.h>
 
-#define   BUF_MAX      1024
+#define   BUF_MAX      256
 
 //掩码
 #define   PLX_RGB_MASK             0x8000
@@ -31,8 +31,12 @@
 int isspace(char c);
 //读取PLG文件一行
 char *readPlxFileLine(char *buffer,int maxLength,FILE *fp);
+
 //加载PLX文件
 int loadObjectPlg(Object1 *pObj, const char *filename,
 	Vector4D *scale, Vector4D *pos, Vector4D *rotate);
+
+//计算物体平均半径 及 最大半径
+int computeObjectRadius(Object1 *obj);
 
 #endif

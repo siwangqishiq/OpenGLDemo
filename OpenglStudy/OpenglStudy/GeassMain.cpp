@@ -71,6 +71,18 @@ int init()
 	//test();
 	test2();
 
+	char filename[128] = "assets/obj1_model.plg";
+	Object1 cubeObj;
+	Vector4D scale = { 1, 1, 1, 1 };
+	Vector4D pos = { 10, 10, 10, 1 };
+	Vector4D rotate = { 0, 0, 0, 1 };
+
+	if (loadObjectPlg(&cubeObj, filename, &scale, &pos, &rotate) != SUCCESS){
+		printf("\nread Object ERROR");
+		return 0;
+	}
+	printf("\nread Object SUCCESS!\n");
+
 	glClearColor(1,1,1,1);
 	//◊ ‘¥‘ÿ»Î
 
@@ -99,7 +111,7 @@ void handleKeyInput(unsigned char key, int x, int y)
 	}
 }
 
-int main1(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);

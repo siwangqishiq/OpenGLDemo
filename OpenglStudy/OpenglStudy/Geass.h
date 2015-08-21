@@ -5,11 +5,31 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "DrawOpenGL.h"
 
 #define SUCCESS      0
 #define ERROR       -1
+
+//生成5 5 5格式的16位颜色值
+#define _RGB16BIT555(r,g,b)    ((b&31)+((g&31)<<5)+((r&31)<<10))
+
+//生成5 6 5格式的16位颜色值
+#define _RGB16BIT565(r,g,b)    ((b&31)+((g&63)<<5)+((r&31)<<11))
+
+//生成8 8 8格式的24位颜色值
+#define _RGB24BIT(a,r,g,b)	   ((b)+((g)<<8)+((r)<<18))
+
+//生成A 8 8 8格式的32位颜色值
+#define _RGB32BIT(a,r,g,b)	   ((b)+((g)<<8)+((r)<<16)+((a)<<24))
+
+//位运算
+#define SET_BIT(word,bit_flag)   ((word) = ((word)|(bit_flag)))
+#define RESET_BIT(word,bit_flag)   ((word) = ((word)&(~bit_flag)))
+
+//产生xy之间的随机数
+#define RAND_RANGE(x,y)   ((x)+(rand()%((y)-(x)+1)))
 
 struct _Point3D{
 	float x;
@@ -82,8 +102,12 @@ typedef struct PolyFace4DType_v1 PolyFace1;
 #define OBJECT_MAX_VERTICES         1024//物体最多顶点个数
 #define OBJECT_MAX_POLYS             512//物体最多多边形个数
 
+#define   OBJECT_STATE_ACTIVE      0x0001//激活状态
+#define   OBJECT_STATE_VISIBLE     0x0002//物体为可见状态
+
 //多边形面属性
 #define  POLY_ATTR_2SIDED        0x0001
+
 #define  POLY_ATTR_TRANSPANT     0x0002
 #define  POLY_ATTR_8BITCOLOR     0x0004
 #define  POLY_ATTR_RGB16         0x0008
@@ -98,6 +122,7 @@ typedef struct PolyFace4DType_v1 PolyFace1;
 #define  POLY_STATE_ACTIVE     0x0001
 #define  POLY_STATE_CLIPPED    0x0002
 #define  POLY_STATE_BACKFACE   0x0004
+
 
 
 struct Object_4D_V1_Type

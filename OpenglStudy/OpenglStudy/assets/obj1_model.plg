@@ -1,11 +1,31 @@
+#this cube plx file
+#object descrption
 
-#PLG file  description a 3D model
-hehe
+cube   8   12
 
-#PLG file  description a 3D model
-Hello world
-#PLG file  description a 3D modelds
+#vertex list
+5	5	5
+-5	5	5
+-5	5	-5
+5	5	-5
+5	-5	5
+-5	-5	5
+-5	-5	-5
+5	-5	-5
 
-#PLG file  description a 3D model
+#多边形列表
+#每个多边形3个顶点
+0xd0f0	3 0 1 2
+0xd0f0	3 0 2 3
+0xd0f0	3 0 7 4
+0xd0f0	3 0 3 7
+0xd0f0	3 4 7 6
+0xd0f0	3 4 6 5
+0xd0f0	3 1 6 2
+0xd0f0	3 1 5 6
+0xd0f0	3 3 6 7
+0xd0f0	3 3 2 6
+0xd0f0	3 0 4 5
+0xd0f0	3 0 5 1
 
-sssds
+
