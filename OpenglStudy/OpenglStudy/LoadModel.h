@@ -5,6 +5,8 @@
 #include "Geass.h"
 #include <string.h>
 
+#define SHOW_LOG 1;
+
 #define   BUF_MAX      256
 
 //язбК

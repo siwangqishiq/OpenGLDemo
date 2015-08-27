@@ -66,10 +66,26 @@ void test2()
 
 }
 
+void test3()
+{
+	Vector4D v = {1,2,3,1};
+	Matrix matrix = {  {1,0,0,0,
+						0,1,0,0,
+						0,0,1,0,
+						0,0,0,1} };
+
+	printMatirx(&matrix);
+	printVector(&v);
+
+	Vector4D ret = {0};
+	vectorMultiMatrix(&v, &matrix, &ret);
+	printVector(&ret);
+}
+
 int init()
 {
 	//test();
-	test2();
+	//test2();
 
 	char filename[128] = "assets/obj1_model.plg";
 	Object1 cubeObj;
@@ -85,6 +101,8 @@ int init()
 
 	glClearColor(1,1,1,1);
 	//◊ ‘¥‘ÿ»Î
+
+	test3();
 
 	return 0;
 }

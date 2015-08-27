@@ -45,17 +45,6 @@ typedef struct{
 } Matrix;
 
 
-
-//在控制台打印3D点坐标
-void printPoint3D(const Point3D * pPoint3D);
-
-
-//打印矩阵
-void printMatirx(const Matrix *pMatrix);
-
-//两矩阵相乘
-int multiMatrix(Matrix *ret, const Matrix *left, const Matrix *right);
-
 //4D点
 typedef struct
 {
@@ -66,6 +55,23 @@ typedef struct
 } Point4D;
 
 typedef Point4D Vector4D;
+
+
+//在控制台打印3D点坐标
+void printPoint3D(const Point3D * pPoint3D);
+
+//Vector显示
+void printVector(Vector4D *pVect);
+
+//打印矩阵
+void printMatirx(const Matrix *pMatrix);
+
+//两矩阵相乘
+int multiMatrix(Matrix *ret, const Matrix *left, const Matrix *right);
+
+//4D 向量与4X4矩阵相乘 结果返回到Ret中
+int vectorMultiMatrix(Vector4D *pV, Matrix *pMatrix, Vector4D *pRet);
+
 
 //基于顶点列表的多边形
 //多边形结构体
@@ -145,5 +151,26 @@ struct Object_4D_V1_Type
 	Poly1 pList[OBJECT_MAX_POLYS];//多边形列表
 };
 typedef struct Object_4D_V1_Type Object1;
+
+#define RENDER_LIST_MAX_NUM    400
+
+//多边形渲染列表
+struct RenderPolyList_Type
+{
+	int state;//渲染列表状态
+	int attr;//渲染列表属性
+	Poly1 *polyPtrs[RENDER_LIST_MAX_NUM];//多边形指针列表
+	Poly1 polyData[RENDER_LIST_MAX_NUM];//多边形数据列表
+	int numPolys;//渲染列表内的多边形数量
+};
+
+typedef RenderPolyList_Type RenderPolyList;
+
+#define TRANSFORM_LOCAL_ONLY     1//仅对本地坐标进行变幻
+#define TRANSFORM_TRANS_ONLY     2//仅针对变幻后的坐标
+#define TRANSFORM_LOCAL_TO_TRANS   3//本地坐标转为变幻坐标
+
+//渲染列表根据
+void transformRenderList(RenderPolyList *pRendList,Matrix *pMatrix,int coordSelect);
 
 #endif
