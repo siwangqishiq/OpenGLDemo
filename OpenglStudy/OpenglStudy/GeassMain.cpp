@@ -68,27 +68,24 @@ void test2()
 
 void test3()
 {
-	Vector4D v = {1,2,3,1};
-	Matrix matrix = {  {1,0,0,0,
-						0,1,0,0,
-						0,0,1,0,
-						0,0,0,1} };
+	Vector4D src = {1,2,3,1};
+	Vector4D dst = {10,10,10,10};
+	printVector(&src); 
+	printVector(&dst);
+	vector4DCopy(&src, &dst);
+	printVector(&src);
+	printVector(&dst);
 
-	printMatirx(&matrix);
-	printVector(&v);
-
-	Vector4D ret = {0};
-	vectorMultiMatrix(&v, &matrix, &ret);
-	printVector(&ret);
 }
+
+//全局变量
+char filename[128] = "assets/obj1_model.plg";
+Object1 cubeObj;
 
 int init()
 {
-	//test();
-	//test2();
-
-	char filename[128] = "assets/obj1_model.plg";
-	Object1 cubeObj;
+	//test();			  
+	//test2();			  
 	Vector4D scale = { 1, 1, 1, 1 };
 	Vector4D pos = { 10, 10, 10, 1 };
 	Vector4D rotate = { 0, 0, 0, 1 };
@@ -99,10 +96,21 @@ int init()
 	}
 	printf("\nread Object SUCCESS!\n");
 
+	Matrix m = { {2,0,0,0,
+				  0,2,0,0,
+				  0,0,2,0,
+				  0,0,0,2
+					} };
+	transformObject(&cubeObj, &m, TRANSFORM_LOCAL_TO_TRANS, 1);
+	printf("变换后的顶点列表\n");
+	for (int i = 0; i < cubeObj.numVertices; i++)
+	{
+		printPoint4D(&cubeObj.tvList[i]);
+	}//end for i
+
 	glClearColor(1,1,1,1);
 	//资源载入
-
-	test3();
+	//test3();
 
 	return 0;
 }

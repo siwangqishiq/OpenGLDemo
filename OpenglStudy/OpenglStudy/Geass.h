@@ -38,6 +38,7 @@ struct _Point3D{
 };
 
 typedef struct _Point3D Point3D;
+typedef Point3D Vector3D;
 
 //4x4矩阵 
 typedef struct{
@@ -54,24 +55,16 @@ typedef struct
 	float w;
 } Point4D;
 
+//3D平面
+struct Plane3D_Type
+{
+	Point3D p0;
+	Vector3D n;
+};
+
+typedef struct Plane3D_Type Plane3D;
+
 typedef Point4D Vector4D;
-
-
-//在控制台打印3D点坐标
-void printPoint3D(const Point3D * pPoint3D);
-
-//Vector显示
-void printVector(Vector4D *pVect);
-
-//打印矩阵
-void printMatirx(const Matrix *pMatrix);
-
-//两矩阵相乘
-int multiMatrix(Matrix *ret, const Matrix *left, const Matrix *right);
-
-//4D 向量与4X4矩阵相乘 结果返回到Ret中
-int vectorMultiMatrix(Vector4D *pV, Matrix *pMatrix, Vector4D *pRet);
-
 
 //基于顶点列表的多边形
 //多边形结构体
@@ -83,6 +76,9 @@ struct Poly4DType_v1
 
 	Point4D *pvList;//顶点列表
 	int vIndex[3];//顶点索引
+
+	Point4D local_points[3];//内部存储点
+	Point4D transform_points[3]; //变幻后的点
 };
 typedef struct Poly4DType_v1 Poly1;
 
@@ -166,11 +162,86 @@ struct RenderPolyList_Type
 
 typedef RenderPolyList_Type RenderPolyList;
 
+//相机数据结构
+struct Camera_Type
+{
+	int state;//相机状态
+	int attr;//相机属性
+	Point4D pos;//相机在世界坐标中的位置
+	Vector4D dir;//相机注视方向
+	//UVN相机 参数
+	Vector4D u;
+	Vector4D v;
+	Vector4D n;
+	Point4D target;//目标位置
+
+	float viewDistH;//水平视距
+	float viewDistV;//垂直视距
+	float fov;//水平方向与垂直方向的视野
+	float near_clip_z;//近裁剪面
+	float far_clip_z;//远裁剪面
+
+	float viewplane_width;//视平面的宽
+	float viewplane_height;//视平面的高
+
+	float viewport_width;//视平面的宽度
+	float viewport_height;//视平面高度
+	float viewport_center_x;
+	float viewport_center_y;
+
+	float aspect_ratio;//屏幕宽高比
+
+	Plane3D right_clip_plane;//右裁剪面
+	Plane3D left_clip_plane;//左裁剪面
+	Plane3D top_clip_plane;//上裁剪面
+	Plane3D bottom_clip_plane;//下裁剪面
+	
+	Matrix mcam;//世界坐标到相机坐标的变换矩阵
+	Matrix mper;//相机坐标到透视坐标的变换矩阵
+	Matrix mscr;//透视坐标到屏幕坐标
+};
+
+
+
+//在控制台打印3D点坐标
+void printPoint3D(const Point3D * pPoint3D);
+
+//打印4d点
+void printPoint4D(const Point4D * pPoint4D);
+
+//Vector显示
+void printVector(Vector4D *pVect);
+
+//打印矩阵
+void printMatirx(const Matrix *pMatrix);
+
+//src向量 拷贝到 distVector向量
+void vector4DCopy(Vector4D *srcVector, Vector4D *distVector);
+
+//两矩阵相乘
+int multiMatrix(Matrix *ret, const Matrix *left, const Matrix *right);
+
+//4D 向量与4X4矩阵相乘 结果返回到Ret中
+int vectorMultiMatrix(Vector4D *pV, Matrix *pMatrix, Vector4D *pRet);
+
+//3D点与4X4矩阵相乘 结果返回到Ret中
+int point3DMultiMatrix(Point3D *pV, Matrix *pMatrix, Point3D *pRet);
+
+//4D点与4X4矩阵相乘 结果返回到Ret中
+int point4DMultiMatrix(Point4D *pV, Matrix *pMatrix, Point3D *pRet);
+
 #define TRANSFORM_LOCAL_ONLY     1//仅对本地坐标进行变幻
 #define TRANSFORM_TRANS_ONLY     2//仅针对变幻后的坐标
 #define TRANSFORM_LOCAL_TO_TRANS   3//本地坐标转为变幻坐标
 
-//渲染列表根据
+//渲染列表
 void transformRenderList(RenderPolyList *pRendList,Matrix *pMatrix,int coordSelect);
+
+//物体依据矩阵变幻顶点列表函数
+//pObj 物体指针
+//pMatrix 变换矩阵指针
+//coordSelect 指定对哪种坐标进行变幻
+//transformBasis 是否对朝向向量进行变换
+void transformObject(Object1 *pObj, Matrix *pMatrix, int coordSelect,int transformBasis);
 
 #endif
