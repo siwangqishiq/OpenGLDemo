@@ -110,6 +110,7 @@ int loadObjectPlg(Object1 *obj, const char *filename,
 		obj->vList[vIndex].x *= scale->x;
 		obj->vList[vIndex].y *= scale->y;
 		obj->vList[vIndex].z *= scale->z;
+		obj->vList[vIndex].w = 1;
 
 		printf("\n vertex %d:%f %f %f", vIndex, obj->vList[vIndex].x, obj->vList[vIndex].y,
 			obj->vList[vIndex].z);

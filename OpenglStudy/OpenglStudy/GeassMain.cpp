@@ -78,16 +78,71 @@ void test3()
 
 }
 
+//Matrix Test
+void testTransfromMatrix()
+{
+	Matrix m1;
+	setMatrixValues(&m1,1,2,3,4,
+						1,2,3,4,
+						2,3,4,5,
+						1,2,3,4);
+
+	printMatirx(&m1);
+
+	Vector4D pos = {11,13,17,1};
+	Matrix m2;
+	buildTransformMatrix(&pos, &m2);
+	printMatirx(&m2);
+
+
+}
+
 //全局变量
 char filename[128] = "assets/obj1_model.plg";
 Object1 cubeObj;
+
+
+void testModelToWorld()
+{
+	printf("原来的顶点位置:\n");
+	//printPoint4D(&cubeObj.worldPos);
+	for (int i = 0; i < cubeObj.numVertices; i++)
+	{
+		printPoint4D(&cubeObj.tvList[i]);
+	}//end for i
+	modelToWorldObject(&cubeObj);
+	printf("ModelToWorld后的顶点位置:\n");
+	for (int i = 0; i < cubeObj.numVertices; i++)
+	{
+		printPoint4D(&cubeObj.tvList[i]);
+	}//end for i
+}
+
+void testModelToWorldMatrix()
+{
+	printf("原来的顶点位置:\n");
+	//printPoint4D(&cubeObj.worldPos);
+	for (int i = 0; i < cubeObj.numVertices; i++)
+	{
+		printPoint4D(&cubeObj.tvList[i]);
+	}//end for i
+
+	modelToWorldObjectWithMatrix(&cubeObj);
+
+	printf("ModelToWorld后的顶点位置:\n");
+	for (int i = 0; i < cubeObj.numVertices; i++)
+	{
+		printPoint4D(&cubeObj.tvList[i]);
+	}//end for i
+}
+
 
 int init()
 {
 	//test();			  
 	//test2();			  
 	Vector4D scale = { 1, 1, 1, 1 };
-	Vector4D pos = { 10, 10, 10, 1 };
+	Vector4D pos = { 100, 100, 100, 1 };
 	Vector4D rotate = { 0, 0, 0, 1 };
 
 	if (loadObjectPlg(&cubeObj, filename, &scale, &pos, &rotate) != SUCCESS){
@@ -96,22 +151,12 @@ int init()
 	}
 	printf("\nread Object SUCCESS!\n");
 
-	Matrix m = { {2,0,0,0,
-				  0,2,0,0,
-				  0,0,2,0,
-				  0,0,0,2
-					} };
-	transformObject(&cubeObj, &m, TRANSFORM_LOCAL_TO_TRANS, 1);
-	printf("变换后的顶点列表\n");
-	for (int i = 0; i < cubeObj.numVertices; i++)
-	{
-		printPoint4D(&cubeObj.tvList[i]);
-	}//end for i
-
 	glClearColor(1,1,1,1);
 	//资源载入
 	//test3();
-
+	//testTransfromMatrix();
+	//testModelToWorld();
+	testModelToWorldMatrix();
 	return 0;
 }
 

@@ -126,7 +126,6 @@ typedef struct PolyFace4DType_v1 PolyFace1;
 #define  POLY_STATE_BACKFACE   0x0004
 
 
-
 struct Object_4D_V1_Type
 {
 	int id;//物体唯一标示
@@ -215,6 +214,12 @@ void printVector(Vector4D *pVect);
 //打印矩阵
 void printMatirx(const Matrix *pMatrix);
 
+//给4x4矩阵赋值
+void setMatrixValues(Matrix *pM, float m00, float m01, float m02, float m03, 
+								 float m10, float m11,float m12, float m13,
+								 float m20, float m21, float m22, float m23,
+								 float m30, float m31, float m32, float m33);
+
 //src向量 拷贝到 distVector向量
 void vector4DCopy(Vector4D *srcVector, Vector4D *distVector);
 
@@ -230,6 +235,9 @@ int point3DMultiMatrix(Point3D *pV, Matrix *pMatrix, Point3D *pRet);
 //4D点与4X4矩阵相乘 结果返回到Ret中
 int point4DMultiMatrix(Point4D *pV, Matrix *pMatrix, Point3D *pRet);
 
+//构建平移矩阵
+int buildTransformMatrix(const Vector4D *pPos, Matrix *pMt);
+
 #define TRANSFORM_LOCAL_ONLY     1//仅对本地坐标进行变幻
 #define TRANSFORM_TRANS_ONLY     2//仅针对变幻后的坐标
 #define TRANSFORM_LOCAL_TO_TRANS   3//本地坐标转为变幻坐标
@@ -243,5 +251,14 @@ void transformRenderList(RenderPolyList *pRendList,Matrix *pMatrix,int coordSele
 //coordSelect 指定对哪种坐标进行变幻
 //transformBasis 是否对朝向向量进行变换
 void transformObject(Object1 *pObj, Matrix *pMatrix, int coordSelect,int transformBasis);
+
+//模型坐标向世界坐标转换
+void modelToWorldObject(Object1 *pObj,int coodSelct = TRANSFORM_LOCAL_TO_TRANS);
+
+//模型坐标向世界坐标转换 矩阵变换实现
+void modelToWorldObjectWithMatrix(Object1 *pObj, int coodSelct = TRANSFORM_LOCAL_TO_TRANS);
+
+//渲染列表多边形 局部坐标转世界坐标
+void modelToWorldRenderList(RenderPolyList *pRenderList);
 
 #endif
